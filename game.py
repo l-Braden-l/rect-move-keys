@@ -3,7 +3,6 @@
 import pygame
 import sys
 import config # Import the config module 
-import random
 def init_game (): 
     pygame.init()
     pygame.font.init()
@@ -62,6 +61,7 @@ def main():
       # -- Render text -- #
       text_surface1 = font.render('Use arrow keys to move the red rectangle!', True, config.BLACK)
       text_surface2 = font.render('Use W,A,S,D to move the blue rectangle!', False, config.BLACK)
+      text_surface3 = pygame.font.Font.render('Also use 1,2,3,4 for size change!', True, config.BLACK)
       
 
       # -- Key Pressed (Red Rectangle) -- #
@@ -75,7 +75,7 @@ def main():
       if key[pygame.K_DOWN]: # Move down
          y1 += value
 
-         # -- Key Pressed (Blue Rectangle) -- #
+      # -- Key Pressed (Blue Rectangle) -- #
       key = pygame.key.get_pressed()
       if key[pygame.K_a]: # Move left
          x2 -= value
@@ -86,7 +86,7 @@ def main():
       if key[pygame.K_s]: # Move down
          y2 += value
 
-         # -- Change Both Shapes -- # 
+      # -- Change Both Shapes -- # 
       if key[pygame.K_1]:
          height1 += value
          height2 += value
@@ -99,10 +99,6 @@ def main():
       if key[pygame.K_4]:
          height1 -= value
          height2 -= value
-      if key[pygame.K_r]:
-         color1 = random.randint((0,255)(0,255)(0,255))
-         color2 = random.randint((0,255)(0,255)(0,255))
-      
 
       screen.fill(config.WHITE) # Use color from config
 
@@ -110,7 +106,6 @@ def main():
       draw_rectangle(screen,color1, x1, y1, width1, height1) # Draw Red Rectangle
       draw_rectangle(screen, color2, x2, y2, width2, height2) # Draw Blue Rectangle
 
-   
       # -- How Many Pixels Wide (Text) -- #
          # -- Text one -- #
       text_width1 = text_surface1.get_width() 
@@ -124,9 +119,17 @@ def main():
       # -- Set Fixed y-coordinate for text -- #
       text2_y = 300 
 
+       # -- Text Three -- #
+      text_width3 = text_surface3.get_width() 
+      text3_x = 399
+      # -- Set Fixed y-coordinate for text -- #
+      text3_y = 399
+
       # -- Blit Text(s) -- #
       screen.blit(text_surface1, (text1_x, text1_y))
       screen.blit(text_surface2, (text2_x, text2_y))
+      screen.blit(text_surface3, (text3_x, text3_y))
+      
 
       pygame.display.flip()
 
