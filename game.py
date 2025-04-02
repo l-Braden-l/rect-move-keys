@@ -27,6 +27,7 @@ def draw_rectangle(screen,color,x,y,width,height):
    pygame.draw.rect(screen, color, (x, y, width, height))
 
 
+
 def main():
    screen = init_game()
 
@@ -62,7 +63,6 @@ def main():
       text_surface1 = font.render('Use arrow keys to move the red rectangle!', True, config.BLACK)
       text_surface2 = font.render('Use W,A,S,D to move the blue rectangle!', False, config.BLACK)
       text_surface3 = font.render('Also use 1,2,3,4 for size change!', True, config.BLACK)
-      text_surface4 = font.render('Collison!', True, config.GREEN)
 
 
       # -- Key Pressed (Red Rectangle) -- #
@@ -107,12 +107,9 @@ def main():
       screen.fill(config.WHITE) # Use color from config
 
       # -- Draw Shapes -- #
-      
-      
+      draw_rectangle(screen,color1, x1, y1, width1, height1) # Draw Red Rectangle
+      draw_rectangle(screen, color2, x2, y2, width2, height2) # Draw Blue Rectangle
 
-
-      rect1 = draw_rectangle(screen,color1, x1, y1, width1, height1) # Draw Red Rectangle
-      rect2 = draw_rectangle(screen, color2, x2, y2, width2, height2) # Draw Blue Rectangle
 
       # -- How Many Pixels Wide (Text) -- #
          # -- Text one -- #
@@ -133,24 +130,12 @@ def main():
       # -- Set Fixed y-coordinate for text -- #
       text3_y = 399
 
-      # -- Text four -- #
-      text_width4 = text_surface4.get_width() 
-      text4_x = 3999
-      # -- Set Fixed y-coordinate for text -- #
-      text4_y = 3999
-
 
       # -- Blit Text(s) -- #
       screen.blit(text_surface1, (text1_x, text1_y))
       screen.blit(text_surface2, (text2_x, text2_y))
       screen.blit(text_surface3, (text3_x, text3_y))
-      screen.blit(text_surface4, (text4_x, text4_y))
       
-
-      if pygame.sprite.collide_rect(rect1, rect2): 
-         text4_x = 300
-         text4_y = 300
-
       pygame.display.flip()
 
       # -- Limit the frame rate to the specified frames per second (FPS) -- #
